@@ -214,11 +214,7 @@
 
     <div class="container navbar-expand-md font-normal ">
 
-                @if($categories!=null)
-            @foreach($categories as $pro)
-                <a href="{{route('category.chosed',['id'=>$pro->id])}}" class="nav-link ">{{ $pro->name }}</a>
-            @endforeach
-        @endif
+
 
 
 

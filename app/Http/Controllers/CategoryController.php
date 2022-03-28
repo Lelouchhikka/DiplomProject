@@ -16,8 +16,8 @@ class CategoryController extends Controller
         return view('categoryIndex')->with(['product'=>$products,'name'=>$name, 'categories'=>$cate]);
     }
     public function category(){
-        $cate=Category::all();
-        return view('category')->with(['categories'=>$cate]);
+        $categories=Category::all();
+        return view('category')->with(['categories'=>$categories]);
     }
     public function index()
     {

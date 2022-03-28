@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_admin')
 @section('content')
     <div class="row" style="margin-top: 5rem;">
         <div class="col-lg-12 margin-tb">
@@ -25,7 +25,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Details:</strong>
-                {{ $product->detaills }}
+                {{ $product->details }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

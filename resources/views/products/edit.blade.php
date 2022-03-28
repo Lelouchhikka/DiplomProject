@@ -1,15 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.app_admin')
 @section('content')
     <h2 style="margin-top: 5rem;" class="text-center">Edit Product</h2>
     <br>
-    <form action="{{ route('products.update', $product->id) }}" method="POST" name="update_product">
-        {{ csrf_field() }}
-        @method('PATCH')
+    <form action="{{ route('products.update', $product->id) }}" method="POST" enctype=multipart/form-data name="update_product">
+        @csrf
+        @method('PUT    ')
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
                     <strong>Title</strong>
-                    <input type="text" name="name" class="form-control" placeholder="Enter Name" value="{{ $product->name }}">
+                    <input type="text" name="title" class="form-control" placeholder="Enter Name" value="{{ $product->name }}">
                 </div>
             </div>
             <div class="col-md-12">
@@ -36,12 +36,7 @@
                     <input type="number" name="shipping_cost" class="form-control" placeholder="Enter Slug" value="{{ $product->shipping_cost }}">
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <strong>Product Description</strong>
-                    <textarea class="form-control" col="4" name="description" placeholder="Enter Description" >{{ $product->description }}</textarea>
-                </div>
-            </div>
+
             <div class="col-md-12">
                 <div class="form-group">
                     <strong>Product Category Id</strong>
