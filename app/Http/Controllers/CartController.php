@@ -17,9 +17,16 @@ class CartController extends Controller
         session()->put('locale', 'en');
         return back();
     }
-    public function shop()
+    public function shop(Request $search)
     {
+        $search = $search->search;
         $cate=Category::all();
+        if ($search!==null){
+            $products = Product::query()
+                ->where('name', 'LIKE', "%{$search}%")
+                ->get();
+            return view('shop')->with(['products' => $products, 'categories'=>$cate,'search'=>$search]);
+        }
         $products = Product::all();
         return view('shop')->with(['products' => $products, 'categories'=>$cate]);
 

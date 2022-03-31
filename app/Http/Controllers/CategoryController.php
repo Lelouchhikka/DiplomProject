@@ -4,16 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use PhpParser\Node\Scalar\String_;
 
 class CategoryController extends Controller
 {
     public function getCategory(Request $category) {
-        $category=$category->id;
+        $id=$category->id;
+        $sort=$category->sort;
+        $category=$id;
         $singleCategory = Category::find($category);
         $name =$singleCategory->name;
-        $products =$singleCategory->products;
         $cate=Category::all();
-        return view('categoryIndex')->with(['product'=>$products,'name'=>$name, 'categories'=>$cate]);
+
+        if($sort =="LowToHigh"){
+            $products =$singleCategory->products->sortBy('price');
+            return view('categoryIndex')->with(['product'=>$products,'name'=>$name, 'id'=>$id, 'categories'=>$cate]);
+        }elseif ($sort == "HighToLow"){
+            $products =$singleCategory->products->sortByDesc('price');
+            return view('categoryIndex')->with(['product'=>$products,'name'=>$name, 'id'=>$id, 'categories'=>$cate]);
+        }
+
+        $products =$singleCategory->products;
+        return view('categoryIndex')->with(['product'=>$products,'name'=>$name, 'id'=>$id, 'categories'=>$cate]);
     }
     public function category(){
         $cate=Category::all();

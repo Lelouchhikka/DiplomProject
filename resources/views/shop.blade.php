@@ -2,10 +2,8 @@
 
 @section('content')
     <div class="container " style="margin-top: 80px">
-
         <div class="row justify-content-center">
             <div class="col-lg-12">
-
                 <div class="row">
                     @foreach($products as $pro)
                         <a href="{{route('product.id',$pro->id)}}">

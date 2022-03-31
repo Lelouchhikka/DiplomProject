@@ -13,6 +13,10 @@
                 </div>
 
                 <br>
+                <div class="flex flex-row flex-wrap justify-content-between">
+                    @include('partials.filter')
+                    @include('partials.sortBy')
+                </div>
                 <div class="row mt-3">
                     @foreach($product as $pro)
                         <a href="{{route('product.id',$pro->id)}}">
