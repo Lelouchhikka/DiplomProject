@@ -8,11 +8,11 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <form class="w-4/6"  action="{{route('home')}}">
+        <form class="w-4/6"  action="">
             <div class="input-group  border rounded-pill p-1">
-                <input id="search" name="search" type="search" placeholder="Поиск по всем категориям" aria-describedby="button-addon3" class="form-control bg-none border-0">
+                <input type="search" placeholder="Поиск по всем категориям" aria-describedby="button-addon3" class="form-control bg-none border-0">
                 <div class="input-group-append border-0">
-                    <button id="button-addon3" type="submit" class="btn btn-link" ><i class="fa fa-search"></i></button>
+                    <button id="button-addon3" type="button" class="btn btn-link"><i class="fa fa-search"></i></button>
                 </div>
             </div>
         </form>
@@ -214,11 +214,7 @@
 
     <div class="container navbar-expand-md font-normal ">
 
-                @if($categories!=null)
-            @foreach($categories as $pro)
-                <a href="{{route('category.chosed',['id'=>$pro->id])}}" class="nav-link ">{{ $pro->name }}</a>
-            @endforeach
-        @endif
+
 
 
 

@@ -112,9 +112,7 @@ class ProductController extends Controller
 
         $product->update($request->all());
 
-        return redirect()->route('posts.index')
-            ->with('success','Product updated successfully');
-
+        return redirect()->route('products.index');
     }
 
     /**
