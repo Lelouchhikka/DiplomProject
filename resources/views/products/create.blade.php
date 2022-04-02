@@ -62,11 +62,15 @@
                     <textarea class="form-control" style="height:150px" name="description" placeholder="Enter Description"></textarea>
                 </div>
             </div>
-            <select class="form-select" aria-label="Default select example" name="category_id">
-                @foreach ($categories as $row)
-                    <option value="{{$row->id}}">{{$row->name}}</option>
-                @endforeach
-            </select>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <strong>Product Category</strong>
+                    <select class="form-select" aria-label="Default select example" name="category_id">
+                        @foreach ($categories as $row)
+                            <option value="{{$row->id}}">{{$row->name}}</option>
+                        @endforeach
+                    </select></div>
+            </div>
 
 {{--            <div class="col-xs-12 col-sm-12 col-md-12">--}}
 {{--                <div class="form-group">--}}

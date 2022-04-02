@@ -46,9 +46,12 @@
 
             <div class="col-md-12">
                 <div class="form-group">
-                    <strong>Product Category Id</strong>
-                    <input type="number" name="category_id" class="form-control" placeholder="Enter Category Id" value="{{ $product->category_id }}">
-                </div>
+                    <strong>Product Category</strong>
+                    <select class="form-select" aria-label="Default select example" name="category_id">
+                        @foreach ($categories as $row)
+                            <option value="{{$row->id}}">{{$row->name}}</option>
+                        @endforeach
+                    </select></div>
             </div>
             <div class="col-md-12">
                 <div class="form-group">
