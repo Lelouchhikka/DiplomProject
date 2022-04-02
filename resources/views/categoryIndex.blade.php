@@ -14,7 +14,6 @@
 
                 <br>
                 <div class="flex flex-row flex-wrap justify-content-between">
-                    @include('partials.filter')
                     @include('partials.sortBy')
                 </div>
                 <div class="row mt-3">
