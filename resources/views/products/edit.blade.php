@@ -49,16 +49,32 @@
                     <strong>Product Category</strong>
                     <select class="form-select" aria-label="Default select example" name="category_id">
                         @foreach ($categories as $row)
-                            <option value="{{$row->id}}">{{$row->name}}</option>
+                            @if($product->category_id==$row->id)
+
+                                <option selected value="{{$row->id}}">{{$row->name}}</option>
+
+                            @else
+                                <option value="{{$row->id}}">{{$row->name}}</option>
+                            @endif
                         @endforeach
                     </select></div>
             </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <strong>Product Brand Id</strong>
-                    <input type="number" name="brand_id" class="form-control" placeholder="Enter Brand Id" value="{{ $product->brand_id }}">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <strong>Product Brand</strong>
+                        <select class="form-select" aria-label="Default select example" name="brand_id">
+
+                            @foreach ($brands as $row)
+                                @if($product->brand_id==$row->id)
+
+                                    <option selected value="{{$row->id}}">{{$row->name}}</option>
+
+                                    @else
+                                <option value="{{$row->id}}">{{$row->name}}</option>
+                                @endif
+                            @endforeach
+                        </select></div>
                 </div>
-            </div>
             <div class="col-md-12">
                 <h1>{{$product->image_path}}</h1>
                 <div class="form-group">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Brands;
 use App\Models\Category;
 use App\Models\Product;
@@ -18,19 +19,20 @@ class ProductController extends Controller
     public function index()
     {
         $cate=Category::all();
+        $brands=Brand::all();
         $data = Product::latest()->paginate(5);
         return view('products.index',compact('data'))
-            ->with(['i'=>(request()->input('page', 1) - 1) * 5,'categories'=>$cate]);
+            ->with(['i'=>(request()->input('page', 1) - 1) * 5,'categories'=>$cate,'brands'=>$brands]);
     }
 
     public function id($id){
         $data=Product::all();
         $cate=Category::all();
-
+        $brands=Brand::all();
         if($data->contains($id)){
             foreach ($data as $item) {
                 if($item->id==$id){
-                    return view('productIndex')->with(['item'=>$item,'categories'=>$cate]);}
+                    return view('productIndex')->with(['item'=>$item,'categories'=>$cate,'brands'=>$brands]);}
             }
         }
     }
@@ -42,8 +44,8 @@ class ProductController extends Controller
     public function create()
     {
         $cate=Category::all();
-
-        return view('products.create')->with(['categories'=>$cate]);
+        $brands=Brand::all();
+        return view('products.create')->with(['categories'=>$cate,'brands'=>$brands]);
 
     }
 
@@ -80,9 +82,9 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Product $product)
-    {
+    {  $brands=Brand::all();
         $cate=Category::all();
-        return view('products.show',compact('product'))->with(['categories'=>$cate]);
+        return view('products.show',compact('product'))->with(['categories'=>$cate,'brands'=>$brands]);
     }
 
     /**
@@ -92,9 +94,9 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Product $product)
-    {
+    {  $brands=Brand::all();
         $cate=Category::all();
-        return view('products.edit',compact('product'))->with(['categories'=>$cate]);
+        return view('products.edit',compact('product'))->with(['categories'=>$cate,'brands'=>$brands]);
     }
 
     /**

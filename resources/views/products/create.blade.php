@@ -66,6 +66,7 @@
                 <div class="form-group">
                     <strong>Product Category</strong>
                     <select class="form-select" aria-label="Default select example" name="category_id">
+
                         @foreach ($categories as $row)
                             <option value="{{$row->id}}">{{$row->name}}</option>
                         @endforeach
@@ -78,11 +79,14 @@
 {{--                    <input type="number" name="category_id" class="form-control" placeholder="Choose Category">--}}
 {{--                </div>--}}
 {{--            </div>--}}
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-md-12">
                 <div class="form-group">
-                    <strong>brand_id:</strong>
-                    <input type="number" name="brand_id" class="form-control" placeholder="Enter Title">
-                </div>
+                    <strong>Product Brand</strong>
+                    <select class="form-select" aria-label="Default select example" name="brand_id">
+                        @foreach ($brands as $row)
+                            <option value="{{$row->id}}">{{$row->name}}</option>
+                        @endforeach
+                    </select></div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
