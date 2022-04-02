@@ -1,4 +1,4 @@
-@extends('layouts.app_admin')
+@extends('layouts.app')
 @section('content')
     <h2 style="margin-top: 5rem;" class="text-center">Edit Product</h2>
     <br>
@@ -9,7 +9,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <strong>Title</strong>
-                    <input type="text" name="title" class="form-control" placeholder="Enter Name" value="{{ $product->name }}">
+                    <input type="text" name="name" class="form-control" placeholder="Enter Name" value="{{ $product->name }}">
                 </div>
             </div>
             <div class="col-md-12">
@@ -39,6 +39,13 @@
 
             <div class="col-md-12">
                 <div class="form-group">
+                    <strong>Product Description</strong>
+                    <input type="text" name="description" class="form-control" placeholder="Enter Description" value="{{ $product->description }}">
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group">
                     <strong>Product Category Id</strong>
                     <input type="number" name="category_id" class="form-control" placeholder="Enter Category Id" value="{{ $product->category_id }}">
                 </div>
@@ -50,6 +57,7 @@
                 </div>
             </div>
             <div class="col-md-12">
+                <h1>{{$product->image_path}}</h1>
                 <div class="form-group">
                     <strong>Product Image</strong>
                     @if($product->image_path)

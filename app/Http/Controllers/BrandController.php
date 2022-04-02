@@ -14,16 +14,19 @@ class BrandController extends Controller
         $singleBrand = Brand::find($brand);
         $name =$singleBrand->name;
         $products =$singleBrand->products;
-        return view('brandIndex')->with(['product'=>$products,'name'=>$name]);
+        $cate=Category::all();
+
+        return view('brandIndex')->with(['product'=>$products,'name'=>$name,'categories'=>$cate]);
     }
     public function brand(){
         $cate=Brand::all();
+        $cate=Category::all();
         return view('brand')->with(['brands'=>$cate]);
     }
     public function index()
     {
-        $data = Brands::latest()->paginate(5);
         $cate=Category::all();
+        $data = Brands::latest()->paginate(5);
         return view('brands.index',compact('data'))
             ->with(['i', (request()->input('page', 1) - 1) * 5,'categories'=>$cate]);
     }
@@ -35,7 +38,8 @@ class BrandController extends Controller
      */
     public function create()
     {
-        return view('brands.create');
+        $cate=Category::all();
+        return view('brands.create')->with(['categories'=>$cate]);
     }
 
     /**
@@ -64,7 +68,8 @@ class BrandController extends Controller
      */
     public function show(Brand $brand)
     {
-        return view('brands.show',compact('brand'));
+        $cate=Category::all();
+        return view('brands.show',compact('brand'))->with(['categories'=>$cate]);
     }
 
     /**
@@ -75,7 +80,9 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
-        return view('brands.edit',compact('brand'));
+        $cate=Category::all();
+
+        return view('brands.edit',compact('brand'))->with(['categories'=>$cate]);
     }
 
     /**

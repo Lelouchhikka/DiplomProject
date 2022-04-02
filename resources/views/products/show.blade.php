@@ -1,4 +1,4 @@
-@extends('layouts.app_admin')
+@extends('layouts.app')
 @section('content')
     <div class="row" style="margin-top: 5rem;">
         <div class="col-lg-12 margin-tb">

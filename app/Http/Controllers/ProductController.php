@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -15,9 +16,10 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $cate=Category::all();
         $data = Product::latest()->paginate(5);
         return view('products.index',compact('data'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+            ->with(['i'=>(request()->input('page', 1) - 1) * 5,'categories'=>$cate]);
     }
 
     public function id($id){
@@ -38,7 +40,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $cate=Category::all();
+
+        return view('products.create')->with(['categories'=>$cate]);
 
     }
 
@@ -76,7 +80,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('products.show',compact('product'));
+        $cate=Category::all();
+        return view('products.show',compact('product'))->with(['categories'=>$cate]);
     }
 
     /**
@@ -87,7 +92,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('products.edit',compact('product'));
+        $cate=Category::all();
+        return view('products.edit',compact('product'))->with(['categories'=>$cate]);
     }
 
     /**
@@ -99,20 +105,41 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $request->validate([
+        $input = $request->all();
+
+        if ($image = $request->file('image_path')) {
+            $destinationPath = 'image/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image_path'] = "$profileImage";
+        }else{
+            unset($input['image_path']);
+        }
+
+        $product->update($input);
+
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'slug' => 'required',
             'details' => 'required',
             'price'=>'required',
             'shipping_cost'=>'required',
+            'description'=>'required',
             'category_id'=>'required',
             'brand_id'=>'required',
-            'image_path'=>'required',
         ]);
+
+        if ($validator->fails()) {
+            return redirect('/')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $validator->validated();
 
         $product->update($request->all());
 
-        return redirect()->route('products.index');
+        return redirect()->route('category.list');
     }
 
     /**

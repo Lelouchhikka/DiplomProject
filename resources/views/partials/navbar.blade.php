@@ -10,7 +10,7 @@
 
         <form class="w-4/6"  action="{{route('home')}}">
             <div class="input-group  border rounded-pill p-1">
-                <input id="search" name="search" type="search" placeholder="Поиск по всем категориям" aria-describedby="button-addon3" class="form-control bg-none border-0">
+                <input id="search" name="search" type="search" placeholder="Search products" aria-describedby="button-addon3" class="form-control bg-none border-0">
                 <div class="input-group-append border-0">
                     <button id="button-addon3" type="submit" class="btn btn-link" ><i class="fa fa-search"></i></button>
                 </div>
@@ -189,7 +189,7 @@
 
                     <li href="{{route('logout')}}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">Выйти</li>
 
-                    <form id="logout-form" action="{{route('logout')}}" method="post">@csrf</form>
+                   <form id="logout-form" action="{{route('logout')}}" method="post">@csrf</form>
 
                 @endguest
 
@@ -213,16 +213,11 @@
 
 
     <div class="container navbar-expand-md font-normal ">
-
-                @if($categories!=null)
-            @foreach($categories as $pro)
-                <a href="{{route('category.chosed',['id'=>$pro->id])}}" class="nav-link ">{{ $pro->name }}</a>
-            @endforeach
-        @endif
-
-
-
-
+            @if($categories!=null)
+                @foreach($categories as $pro)
+                    <a href="{{route('category.chosed',['id'=>$pro->id])}}" class="nav-link ">{{ $pro->name }}</a>
+                @endforeach
+            @endif
 {{--                <a class="nav-link " href="">TV</a>--}}
 
 {{--                <a class="nav-link " href="">Notebooks</a>--}}
