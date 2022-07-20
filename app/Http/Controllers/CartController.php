@@ -31,6 +31,8 @@ class CartController extends Controller
         return view('shop')->with(['products' => $products, 'categories'=>$cate]);
 
     }
+
+
     public function cart()  {
         $cate=Category::all();
         $cartCollection = \Cart::getContent();
